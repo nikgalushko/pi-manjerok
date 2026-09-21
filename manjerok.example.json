@@ -1,0 +1,40 @@
+{
+  "roles": {
+    "scout": {
+      "agent": "scout",
+      "model": null,
+      "thinking": "low",
+      "enabled": true
+    },
+    "worker": {
+      "agent": "worker",
+      "model": null,
+      "thinking": null
+    },
+    "verifier": {
+      "agent": "manjerok-verifier",
+      "model": null,
+      "thinking": "medium"
+    },
+    "senior": {
+      "agent": "manjerok-senior",
+      "model": null,
+      "thinking": "high"
+    },
+    "reviewer": {
+      "agent": "reviewer",
+      "model": null,
+      "thinking": "high"
+    }
+  },
+  "budgets": {
+    "workerAttempts": 2,
+    "seniorAttempts": 2,
+    "reviewRounds": 2
+  },
+  "prompts": {
+    "verifier": null,
+    "senior": null
+  },
+  "timeoutMs": 1800000
+}
