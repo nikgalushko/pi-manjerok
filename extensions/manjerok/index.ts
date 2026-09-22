@@ -369,28 +369,41 @@ function pushEvidence(source, text) {
   while (evidence.length > 8) evidence.shift();
 }
 
+// Verdict contract, hard-enforced: a verdict is a full line "VERDICT: <TOKEN>"
+// with nothing after the token; of all such lines only the LAST counts, and only
+// whitespace may follow it — the documented "verdict is the last line" rule.
+// Hedged ("VERDICT: FAIL because…") or mid-text-only verdicts are malformed.
+function lastVerdictLine(text, re, roleName, label) {
+  let m, token = null, tail = "";
+  while ((m = re.exec(text)) !== null) { token = m[1]; tail = text.slice(re.lastIndex); }
+  if (token === null) return { token: null, detail: "malformed verdict from " + roleName + ": no clean " + label + " line" };
+  if (tail.trim() !== "") return { token: null, detail: "malformed verdict from " + roleName + ": content after the " + label + " line ('" + trunc(tail.trim(), 120) + "') — the verdict must be the last line" };
+  return { token: token, detail: "" };
+}
+
 function parseVerdict(output, allowed, roleName) {
   const text = typeof output === "string" ? output : "";
-  const m = text.match(/^VERDICT:\\s*([A-Z_]+)/m);
-  if (!m) return { verdict: "BLOCKED", detail: "malformed verdict from " + roleName + ": no VERDICT line" };
-  if (allowed.indexOf(m[1]) === -1) return { verdict: "BLOCKED", detail: "malformed verdict from " + roleName + ": '" + m[1] + "' not in " + allowed.join("|") };
-  return { verdict: m[1], detail: "" };
+  const r = lastVerdictLine(text, /^VERDICT:[ \\t]*([A-Z_]+)[ \\t\\r]*$/gm, roleName, "VERDICT:");
+  if (r.detail) return { verdict: "BLOCKED", detail: r.detail };
+  if (allowed.indexOf(r.token) === -1) return { verdict: "BLOCKED", detail: "malformed verdict from " + roleName + ": '" + r.token + "' not in " + allowed.join("|") };
+  return { verdict: r.token, detail: "" };
 }
 
 function parseReviewerVerdict(output) {
   const text = typeof output === "string" ? output : "";
-  const direct = text.match(/^VERDICT:\\s*([A-Z_]+)/m);
-  if (direct) {
-    if (["FINDINGS", "NO_FINDINGS", "BLOCKED"].indexOf(direct[1]) !== -1) return { verdict: direct[1], detail: "" };
-    return { verdict: "BLOCKED", detail: "malformed verdict from reviewer: '" + direct[1] + "'" };
+  const direct = lastVerdictLine(text, /^VERDICT:[ \\t]*([A-Z_]+)[ \\t\\r]*$/gm, "reviewer", "VERDICT:");
+  if (!direct.detail) {
+    if (["FINDINGS", "NO_FINDINGS", "BLOCKED"].indexOf(direct.token) === -1) return { verdict: "BLOCKED", detail: "malformed verdict from reviewer: '" + direct.token + "'" };
+    return { verdict: direct.token, detail: "" };
   }
-  const merge = text.match(/^Merge verdict:[ \\t]*(.+?)[ \\t]*$/m);
-  if (merge) {
-    const mv = merge[1].toUpperCase();
+  const merge = lastVerdictLine(text, /^Merge verdict:[ \\t]*(.+?)[ \\t\\r]*$/gm, "reviewer", "Merge verdict:");
+  if (!merge.detail) {
+    const mv = merge.token.toUpperCase();
     if (mv === "BLOCK") return { verdict: "FINDINGS", detail: "mapped from 'Merge verdict: BLOCK'" };
-    if (mv === "OK" || mv === "OK WITH NOTES") return { verdict: "NO_FINDINGS", detail: "mapped from 'Merge verdict: " + merge[1] + "'" };
+    if (mv === "OK" || mv === "OK WITH NOTES") return { verdict: "NO_FINDINGS", detail: "mapped from 'Merge verdict: " + merge.token + "'" };
+    return { verdict: "BLOCKED", detail: "malformed verdict from reviewer: '" + merge.token + "'" };
   }
-  return { verdict: "BLOCKED", detail: "malformed verdict from reviewer: no VERDICT or Merge verdict line" };
+  return { verdict: "BLOCKED", detail: "malformed verdict from reviewer: no usable verdict line (" + trunc(direct.detail.replace("malformed verdict from reviewer: ", ""), 120) + "; " + trunc(merge.detail.replace("malformed verdict from reviewer: ", ""), 120) + ")" };
 }
 
 function evidenceBlock() {
@@ -419,8 +432,10 @@ function workPacket(role, attemptsUsed, attemptsBudget, instructions, verdicts) 
     "",
     "## Protocol",
     "The last line of your final response must be exactly one of: " + verdicts.map(function (v) { return "VERDICT: " + v; }).join(" | "),
+    "The verdict line must contain nothing after the token, and only whitespace may follow it in the",
+    "response. If several VERDICT lines appear, only the last one counts.",
     "BLOCKED is reserved for infrastructure/permission/environment failure, never for task difficulty.",
-    "A missing or unrecognized verdict line is treated as BLOCKED with a malformed-verdict note."
+    "A missing, hedged, or misplaced verdict line is treated as BLOCKED with a malformed-verdict note."
   );
   return lines.join("\\n");
 }

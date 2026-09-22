@@ -121,7 +121,7 @@ Hard-enforced by code (the workflow sandbox):
 - one writer at a time (the pipeline is sequential)
 - children cannot spawn children (pi-subagents default)
 - tool allowlists of the packaged agents (verifier has no `edit`/`write`)
-- verdict parsing: `/^VERDICT:\s*([A-Z_]+)/m`, reviewer fallback `Merge verdict: BLOCK → FINDINGS`, `OK | OK with notes → NO_FINDINGS`, anything else → `BLOCKED` (malformed)
+- verdict parsing: the **last** full-line `VERDICT: <TOKEN>` wins, and only whitespace may follow it (hedged or mid-text-only verdicts are malformed); reviewer fallback `Merge verdict: BLOCK → FINDINGS`, `OK | OK with notes → NO_FINDINGS` under the same last-line rule; anything else → `BLOCKED` (malformed)
 
 Soft (prompt-level, inherited honesty of the original):
 
