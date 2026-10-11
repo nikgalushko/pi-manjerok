@@ -1,7 +1,7 @@
 {
   "name": "pi-manjerok",
   "version": "0.1.0",
-  "description": "Deterministic multi-agent routing state machine (worker ⇄ verifier ⇄ senior ⇄ reviewer) for pi, built on pi-subagents workflowScript",
+  "description": "Deterministic multi-agent routing state machine (worker \u21c4 verifier \u21c4 senior \u21c4 reviewer) for pi, built on pi-subagents workflowScript",
   "license": "MIT",
   "type": "module",
   "keywords": [
@@ -30,5 +30,13 @@
   },
   "peerDependencies": {
     "@earendil-works/pi-coding-agent": "*"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "scripts": {
+    "test": "node scripts/run-tests.mjs",
+    "test:explore": "node scripts/report-workflow-exploration.mjs",
+    "test:mutations": "node scripts/check-workflow-mutations.mjs"
   }
 }

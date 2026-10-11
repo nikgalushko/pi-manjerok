@@ -1,0 +1,747 @@
+{
+  "description": "E01 exhaustive allowed-verdict exploration of the real workflow; discovered next roles come from production execution, not a duplicate FSM.",
+  "scenarioLimitPerConfiguration": 10000,
+  "totals": {
+    "configurations": 32,
+    "completedScenarios": 2746,
+    "truncatedBranches": 0
+  },
+  "configurations": [
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 1,
+          "seniorAttempts": 1,
+          "reviewRounds": 1
+        },
+        "highRisk": false,
+        "scoutEnabled": false
+      },
+      "maxChildRuns": 5,
+      "visitedPrefixes": 25,
+      "completedScenarios": 17,
+      "truncatedBranches": 0,
+      "longestCompleted": 5,
+      "families": {
+        "DONE": 3,
+        "STOPPED": 6,
+        "BLOCKED": 8,
+        "escalation": 14,
+        "repeatedReview": 0
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 1,
+          "seniorAttempts": 1,
+          "reviewRounds": 1
+        },
+        "highRisk": false,
+        "scoutEnabled": true
+      },
+      "maxChildRuns": 6,
+      "visitedPrefixes": 52,
+      "completedScenarios": 35,
+      "truncatedBranches": 0,
+      "longestCompleted": 6,
+      "families": {
+        "DONE": 6,
+        "STOPPED": 12,
+        "BLOCKED": 17,
+        "escalation": 28,
+        "repeatedReview": 0
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 1,
+          "seniorAttempts": 1,
+          "reviewRounds": 1
+        },
+        "highRisk": true,
+        "scoutEnabled": false
+      },
+      "maxChildRuns": 5,
+      "visitedPrefixes": 28,
+      "completedScenarios": 19,
+      "truncatedBranches": 0,
+      "longestCompleted": 5,
+      "families": {
+        "DONE": 3,
+        "STOPPED": 7,
+        "BLOCKED": 9,
+        "escalation": 14,
+        "repeatedReview": 0
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 1,
+          "seniorAttempts": 1,
+          "reviewRounds": 1
+        },
+        "highRisk": true,
+        "scoutEnabled": true
+      },
+      "maxChildRuns": 6,
+      "visitedPrefixes": 58,
+      "completedScenarios": 39,
+      "truncatedBranches": 0,
+      "longestCompleted": 6,
+      "families": {
+        "DONE": 6,
+        "STOPPED": 14,
+        "BLOCKED": 19,
+        "escalation": 28,
+        "repeatedReview": 0
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 1,
+          "seniorAttempts": 1,
+          "reviewRounds": 2
+        },
+        "highRisk": false,
+        "scoutEnabled": false
+      },
+      "maxChildRuns": 8,
+      "visitedPrefixes": 43,
+      "completedScenarios": 29,
+      "truncatedBranches": 0,
+      "longestCompleted": 8,
+      "families": {
+        "DONE": 5,
+        "STOPPED": 10,
+        "BLOCKED": 14,
+        "escalation": 26,
+        "repeatedReview": 6
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 1,
+          "seniorAttempts": 1,
+          "reviewRounds": 2
+        },
+        "highRisk": false,
+        "scoutEnabled": true
+      },
+      "maxChildRuns": 9,
+      "visitedPrefixes": 88,
+      "completedScenarios": 59,
+      "truncatedBranches": 0,
+      "longestCompleted": 9,
+      "families": {
+        "DONE": 10,
+        "STOPPED": 20,
+        "BLOCKED": 29,
+        "escalation": 52,
+        "repeatedReview": 12
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 1,
+          "seniorAttempts": 1,
+          "reviewRounds": 2
+        },
+        "highRisk": true,
+        "scoutEnabled": false
+      },
+      "maxChildRuns": 8,
+      "visitedPrefixes": 73,
+      "completedScenarios": 49,
+      "truncatedBranches": 0,
+      "longestCompleted": 8,
+      "families": {
+        "DONE": 8,
+        "STOPPED": 17,
+        "BLOCKED": 24,
+        "escalation": 40,
+        "repeatedReview": 15
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 1,
+          "seniorAttempts": 1,
+          "reviewRounds": 2
+        },
+        "highRisk": true,
+        "scoutEnabled": true
+      },
+      "maxChildRuns": 9,
+      "visitedPrefixes": 148,
+      "completedScenarios": 99,
+      "truncatedBranches": 0,
+      "longestCompleted": 9,
+      "families": {
+        "DONE": 16,
+        "STOPPED": 34,
+        "BLOCKED": 49,
+        "escalation": 80,
+        "repeatedReview": 30
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 1,
+          "seniorAttempts": 2,
+          "reviewRounds": 1
+        },
+        "highRisk": false,
+        "scoutEnabled": false
+      },
+      "maxChildRuns": 7,
+      "visitedPrefixes": 43,
+      "completedScenarios": 29,
+      "truncatedBranches": 0,
+      "longestCompleted": 7,
+      "families": {
+        "DONE": 5,
+        "STOPPED": 10,
+        "BLOCKED": 14,
+        "escalation": 26,
+        "repeatedReview": 0
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 1,
+          "seniorAttempts": 2,
+          "reviewRounds": 1
+        },
+        "highRisk": false,
+        "scoutEnabled": true
+      },
+      "maxChildRuns": 8,
+      "visitedPrefixes": 88,
+      "completedScenarios": 59,
+      "truncatedBranches": 0,
+      "longestCompleted": 8,
+      "families": {
+        "DONE": 10,
+        "STOPPED": 20,
+        "BLOCKED": 29,
+        "escalation": 52,
+        "repeatedReview": 0
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 1,
+          "seniorAttempts": 2,
+          "reviewRounds": 1
+        },
+        "highRisk": true,
+        "scoutEnabled": false
+      },
+      "maxChildRuns": 7,
+      "visitedPrefixes": 46,
+      "completedScenarios": 31,
+      "truncatedBranches": 0,
+      "longestCompleted": 7,
+      "families": {
+        "DONE": 5,
+        "STOPPED": 11,
+        "BLOCKED": 15,
+        "escalation": 26,
+        "repeatedReview": 0
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 1,
+          "seniorAttempts": 2,
+          "reviewRounds": 1
+        },
+        "highRisk": true,
+        "scoutEnabled": true
+      },
+      "maxChildRuns": 8,
+      "visitedPrefixes": 94,
+      "completedScenarios": 63,
+      "truncatedBranches": 0,
+      "longestCompleted": 8,
+      "families": {
+        "DONE": 10,
+        "STOPPED": 22,
+        "BLOCKED": 31,
+        "escalation": 52,
+        "repeatedReview": 0
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 1,
+          "seniorAttempts": 2,
+          "reviewRounds": 2
+        },
+        "highRisk": false,
+        "scoutEnabled": false
+      },
+      "maxChildRuns": 10,
+      "visitedPrefixes": 97,
+      "completedScenarios": 65,
+      "truncatedBranches": 0,
+      "longestCompleted": 10,
+      "families": {
+        "DONE": 11,
+        "STOPPED": 22,
+        "BLOCKED": 32,
+        "escalation": 62,
+        "repeatedReview": 18
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 1,
+          "seniorAttempts": 2,
+          "reviewRounds": 2
+        },
+        "highRisk": false,
+        "scoutEnabled": true
+      },
+      "maxChildRuns": 11,
+      "visitedPrefixes": 196,
+      "completedScenarios": 131,
+      "truncatedBranches": 0,
+      "longestCompleted": 11,
+      "families": {
+        "DONE": 22,
+        "STOPPED": 44,
+        "BLOCKED": 65,
+        "escalation": 124,
+        "repeatedReview": 36
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 1,
+          "seniorAttempts": 2,
+          "reviewRounds": 2
+        },
+        "highRisk": true,
+        "scoutEnabled": false
+      },
+      "maxChildRuns": 10,
+      "visitedPrefixes": 145,
+      "completedScenarios": 97,
+      "truncatedBranches": 0,
+      "longestCompleted": 10,
+      "families": {
+        "DONE": 16,
+        "STOPPED": 33,
+        "BLOCKED": 48,
+        "escalation": 88,
+        "repeatedReview": 33
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 1,
+          "seniorAttempts": 2,
+          "reviewRounds": 2
+        },
+        "highRisk": true,
+        "scoutEnabled": true
+      },
+      "maxChildRuns": 11,
+      "visitedPrefixes": 292,
+      "completedScenarios": 195,
+      "truncatedBranches": 0,
+      "longestCompleted": 11,
+      "families": {
+        "DONE": 32,
+        "STOPPED": 66,
+        "BLOCKED": 97,
+        "escalation": 176,
+        "repeatedReview": 66
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 2,
+          "seniorAttempts": 1,
+          "reviewRounds": 1
+        },
+        "highRisk": false,
+        "scoutEnabled": false
+      },
+      "maxChildRuns": 7,
+      "visitedPrefixes": 40,
+      "completedScenarios": 27,
+      "truncatedBranches": 0,
+      "longestCompleted": 7,
+      "families": {
+        "DONE": 5,
+        "STOPPED": 9,
+        "BLOCKED": 13,
+        "escalation": 21,
+        "repeatedReview": 0
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 2,
+          "seniorAttempts": 1,
+          "reviewRounds": 1
+        },
+        "highRisk": false,
+        "scoutEnabled": true
+      },
+      "maxChildRuns": 8,
+      "visitedPrefixes": 82,
+      "completedScenarios": 55,
+      "truncatedBranches": 0,
+      "longestCompleted": 8,
+      "families": {
+        "DONE": 10,
+        "STOPPED": 18,
+        "BLOCKED": 27,
+        "escalation": 42,
+        "repeatedReview": 0
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 2,
+          "seniorAttempts": 1,
+          "reviewRounds": 1
+        },
+        "highRisk": true,
+        "scoutEnabled": false
+      },
+      "maxChildRuns": 7,
+      "visitedPrefixes": 46,
+      "completedScenarios": 31,
+      "truncatedBranches": 0,
+      "longestCompleted": 7,
+      "families": {
+        "DONE": 5,
+        "STOPPED": 11,
+        "BLOCKED": 15,
+        "escalation": 21,
+        "repeatedReview": 0
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 2,
+          "seniorAttempts": 1,
+          "reviewRounds": 1
+        },
+        "highRisk": true,
+        "scoutEnabled": true
+      },
+      "maxChildRuns": 8,
+      "visitedPrefixes": 94,
+      "completedScenarios": 63,
+      "truncatedBranches": 0,
+      "longestCompleted": 8,
+      "families": {
+        "DONE": 10,
+        "STOPPED": 22,
+        "BLOCKED": 31,
+        "escalation": 42,
+        "repeatedReview": 0
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 2,
+          "seniorAttempts": 1,
+          "reviewRounds": 2
+        },
+        "highRisk": false,
+        "scoutEnabled": false
+      },
+      "maxChildRuns": 10,
+      "visitedPrefixes": 67,
+      "completedScenarios": 45,
+      "truncatedBranches": 0,
+      "longestCompleted": 10,
+      "families": {
+        "DONE": 8,
+        "STOPPED": 15,
+        "BLOCKED": 22,
+        "escalation": 39,
+        "repeatedReview": 9
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 2,
+          "seniorAttempts": 1,
+          "reviewRounds": 2
+        },
+        "highRisk": false,
+        "scoutEnabled": true
+      },
+      "maxChildRuns": 11,
+      "visitedPrefixes": 136,
+      "completedScenarios": 91,
+      "truncatedBranches": 0,
+      "longestCompleted": 11,
+      "families": {
+        "DONE": 16,
+        "STOPPED": 30,
+        "BLOCKED": 45,
+        "escalation": 78,
+        "repeatedReview": 18
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 2,
+          "seniorAttempts": 1,
+          "reviewRounds": 2
+        },
+        "highRisk": true,
+        "scoutEnabled": false
+      },
+      "maxChildRuns": 10,
+      "visitedPrefixes": 145,
+      "completedScenarios": 97,
+      "truncatedBranches": 0,
+      "longestCompleted": 10,
+      "families": {
+        "DONE": 16,
+        "STOPPED": 33,
+        "BLOCKED": 48,
+        "escalation": 74,
+        "repeatedReview": 33
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 2,
+          "seniorAttempts": 1,
+          "reviewRounds": 2
+        },
+        "highRisk": true,
+        "scoutEnabled": true
+      },
+      "maxChildRuns": 11,
+      "visitedPrefixes": 292,
+      "completedScenarios": 195,
+      "truncatedBranches": 0,
+      "longestCompleted": 11,
+      "families": {
+        "DONE": 32,
+        "STOPPED": 66,
+        "BLOCKED": 97,
+        "escalation": 148,
+        "repeatedReview": 66
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 2,
+          "seniorAttempts": 2,
+          "reviewRounds": 1
+        },
+        "highRisk": false,
+        "scoutEnabled": false
+      },
+      "maxChildRuns": 9,
+      "visitedPrefixes": 67,
+      "completedScenarios": 45,
+      "truncatedBranches": 0,
+      "longestCompleted": 9,
+      "families": {
+        "DONE": 8,
+        "STOPPED": 15,
+        "BLOCKED": 22,
+        "escalation": 39,
+        "repeatedReview": 0
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 2,
+          "seniorAttempts": 2,
+          "reviewRounds": 1
+        },
+        "highRisk": false,
+        "scoutEnabled": true
+      },
+      "maxChildRuns": 10,
+      "visitedPrefixes": 136,
+      "completedScenarios": 91,
+      "truncatedBranches": 0,
+      "longestCompleted": 10,
+      "families": {
+        "DONE": 16,
+        "STOPPED": 30,
+        "BLOCKED": 45,
+        "escalation": 78,
+        "repeatedReview": 0
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 2,
+          "seniorAttempts": 2,
+          "reviewRounds": 1
+        },
+        "highRisk": true,
+        "scoutEnabled": false
+      },
+      "maxChildRuns": 9,
+      "visitedPrefixes": 73,
+      "completedScenarios": 49,
+      "truncatedBranches": 0,
+      "longestCompleted": 9,
+      "families": {
+        "DONE": 8,
+        "STOPPED": 17,
+        "BLOCKED": 24,
+        "escalation": 39,
+        "repeatedReview": 0
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 2,
+          "seniorAttempts": 2,
+          "reviewRounds": 1
+        },
+        "highRisk": true,
+        "scoutEnabled": true
+      },
+      "maxChildRuns": 10,
+      "visitedPrefixes": 148,
+      "completedScenarios": 99,
+      "truncatedBranches": 0,
+      "longestCompleted": 10,
+      "families": {
+        "DONE": 16,
+        "STOPPED": 34,
+        "BLOCKED": 49,
+        "escalation": 78,
+        "repeatedReview": 0
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 2,
+          "seniorAttempts": 2,
+          "reviewRounds": 2
+        },
+        "highRisk": false,
+        "scoutEnabled": false
+      },
+      "maxChildRuns": 12,
+      "visitedPrefixes": 148,
+      "completedScenarios": 99,
+      "truncatedBranches": 0,
+      "longestCompleted": 12,
+      "families": {
+        "DONE": 17,
+        "STOPPED": 33,
+        "BLOCKED": 49,
+        "escalation": 93,
+        "repeatedReview": 27
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 2,
+          "seniorAttempts": 2,
+          "reviewRounds": 2
+        },
+        "highRisk": false,
+        "scoutEnabled": true
+      },
+      "maxChildRuns": 13,
+      "visitedPrefixes": 298,
+      "completedScenarios": 199,
+      "truncatedBranches": 0,
+      "longestCompleted": 13,
+      "families": {
+        "DONE": 34,
+        "STOPPED": 66,
+        "BLOCKED": 99,
+        "escalation": 186,
+        "repeatedReview": 54
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 2,
+          "seniorAttempts": 2,
+          "reviewRounds": 2
+        },
+        "highRisk": true,
+        "scoutEnabled": false
+      },
+      "maxChildRuns": 12,
+      "visitedPrefixes": 271,
+      "completedScenarios": 181,
+      "truncatedBranches": 0,
+      "longestCompleted": 12,
+      "families": {
+        "DONE": 30,
+        "STOPPED": 61,
+        "BLOCKED": 90,
+        "escalation": 158,
+        "repeatedReview": 66
+      }
+    },
+    {
+      "config": {
+        "budgets": {
+          "workerAttempts": 2,
+          "seniorAttempts": 2,
+          "reviewRounds": 2
+        },
+        "highRisk": true,
+        "scoutEnabled": true
+      },
+      "maxChildRuns": 13,
+      "visitedPrefixes": 544,
+      "completedScenarios": 363,
+      "truncatedBranches": 0,
+      "longestCompleted": 13,
+      "families": {
+        "DONE": 60,
+        "STOPPED": 122,
+        "BLOCKED": 181,
+        "escalation": 316,
+        "repeatedReview": 132
+      }
+    }
+  ]
+}

@@ -144,4 +144,32 @@ Soft (prompt-level, inherited honesty of the original):
 
 ## Development
 
-No build step: pi loads `extensions/manjerok/index.ts` through jiti. The workflow script is a plain string constant (`WORKFLOW_SCRIPT`) validated by the pi-subagents sandbox rules: top-level `await`, no nested async functions, no filesystem access, config injected via frozen `args`.
+No build step: pi loads `extensions/manjerok/index.ts` through jiti. The pure ESM module `extensions/manjerok/workflow.js` exports the actual `WORKFLOW_SCRIPT`; `index.ts` imports it and preserves its named re-export.
+
+Use Node **22.19.0 or later** (`.node-version` pins the development minimum). This matches [pi 0.83.0's Node requirement](https://github.com/earendil-works/pi/blob/v0.83.0/packages/coding-agent/package.json#L97-L99). The suite was also verified on Node 24.1.0. There are no test dependencies to install.
+
+```bash
+npm test
+npm run test:explore
+npm run test:mutations
+```
+
+`npm test` runs offline with built-in `node:test` and `node:assert/strict`. It needs no installed pi, models, credentials, network, or user configuration. The harness compiles the production workflow as an async function and feeds an explicit queue of role responses to single-item `runs.all` calls. Tests assert role order, status, counters, packets, evidence and transitions rather than a second implementation of the router.
+
+| Plan coverage | Tests |
+| --- | --- |
+| T01–T15 routes and evidence hand-offs | `tests/workflow-transitions.test.mjs` |
+| B01–B09 budget boundaries and counter persistence | `tests/workflow-budgets.test.mjs` |
+| V01–V13 direct/native verdict protocol | `tests/workflow-verdicts.test.mjs` |
+| F01–F07 child failures, strict results and rejection | `tests/workflow-failures.test.mjs`, `tests/workflow-scout-regression.test.mjs` |
+| C01–C13 launch parameters, sequence, packets, bounded evidence and reports | `tests/workflow-contracts.test.mjs` plus shared assertions and route/failure tests |
+| E01 allowed-verdict exploration | `tests/workflow-enumeration.test.mjs` |
+| M01 semantic mutation checks | `scripts/check-workflow-mutations.mjs` |
+
+Each test has a short deadline. The harness also bounds child calls and times out pending child Promises; the sequencing test manually resolves a deferred response without timing assumptions. `npm test` uses `scripts/run-tests.mjs` to launch the same `node --test tests/*.test.mjs` suite under a separate 10-second watchdog. The parent never executes workflow code, so a synchronous infinite loop cannot block its timer. On expiry it kills the Node test runner and descendants (a detached process group on macOS/Linux, `taskkill /T /F` on Windows), prints a diagnostic, and exits with code 124. A controlled fixture checks a synchronous workflow hang and a grandchild heartbeat under an additional independent control deadline. Direct `node --test` invocations bypass this process watchdog; the wrapper accepts `--timeout-ms=<positive integer>` and explicit test paths for focused checks. These safeguards do not simulate the production workflow timeout or a sandbox; processes that deliberately escape the process group/tree are outside their scope.
+
+E01 explores all 32 combinations of budgets `{1, 2}`, high risk, and scout enablement. Each next role is discovered by executing the production script. It rejects launches beyond `(scoutEnabled ? 1 : 0) + 2*W + 2*S + 3*R - 2` and requires `DONE`, `STOPPED`, `BLOCKED`, escalation, and repeated review when `R = 2`. Test diagnostics include completed scenarios, remaining branches, and reached families for each configuration. The separate report command saves the same details in `tests/evidence/exploration.json`; the initial run completed 2,746 scenarios with no truncated branches.
+
+M01 first runs the green baseline, then compiles and executes semantic mutations in temporary copies. Only the expected assertion failure counts as detection; import errors, syntax failures, and timeouts do not. It removes the copies and writes the mutation → test → violated expectation record to `tests/evidence/mutations.md`. `tests/evidence/workflow-extraction.md` records the identical string comparison before the separate scout fix; `tests/evidence/scout-regression.md` records the failing diagnostic-loss reproduction.
+
+The suite covers routing and data contracts. It does not prove model output quality, independent judgment, tool write restrictions, config loading, RPC/report delivery, production deadlines, or all real sandbox restrictions. A smoke test executing this same script in the actual pi-subagents sandbox remains a separate integration step. Promise rejection currently propagates; changing that behavior or accepting non-array result envelopes requires a separate contract change.
